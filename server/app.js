@@ -3,10 +3,22 @@ const mongoos = require('mongoose');
 const express = require("express");
 const app = express();
 
-const port = process.env.PORT || 3000;
+
+
 dotenv.config({path:'./config.env'})
 
 require('./db/conn');
+
+//read data in json format
+app.use(express.json());
+
+//all route of pages in this file
+app.use(require('./router/auth'))
+//const User = require('./model/userSchema');
+
+
+
+const port = process.env.PORT || 3000;
 //Middleware
 const middleware = (req, res, next) => {
     console.log(`hello i am middleware`);
