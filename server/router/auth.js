@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 const User = require('../model/userSchema');
 
@@ -7,6 +8,7 @@ router.get('/', (req, res) => {
     res.send("Hello from the MERN Home router js page");
 });
 
+// registration || signup route
 router.post('/register', async (req, res) => {
 
     const { name, email, phone, work, password, cpassword } = req.body;
@@ -20,10 +22,10 @@ router.post('/register', async (req, res) => {
         const userExist = await User.findOne({ email: email }) //is email ka sara data aa gya ha
         if (userExist) {
 
-            return res.status(422).json({error: "Email already exist"});
+            return res.status(422).json({ error: "Email already exist" });
         }
         else if (password != cpassword) {
-            return res.status(422).json({error: "password are not matching"});
+            return res.status(422).json({ error: "password are not matching" });
         }
         else {
             const user = new User({ name, email, phone, work, password, cpassword }); //key:value
@@ -42,6 +44,7 @@ router.post('/register', async (req, res) => {
 
 });
 
+//login route
 router.post('/signin', async (req, res) => {
 
     const { email, password } = req.body;
@@ -50,24 +53,26 @@ router.post('/signin', async (req, res) => {
 
     try {
         if (!email || !password) {
-            return res.status(400).json({error: "fill the both fields"});
+            return res.status(400).json({ error: "fill the both fields" });
         }
 
         const userLogin = await User.findOne({ email: email })
 
-        if (!userLogin) {
+        if (userLogin) {
+            //compare hash passwoord DB
+            const isMatch = await bcrypt.compare(password, userLogin.password)
 
-            return res.status(400).json({ error: "user invalid" })
+            if (!isMatch) {
 
+                return res.status(400).json({ error: "user invalid" })
+            }
+            else {
+                console.log("user login sucessfully");
+                return res.status(200).json({ message: "user login sucessfully" })
+            }
         } else {
-
-            return res.status(200).json({ message: "user login sucessfully" })
-            console.log("user login sucessfully");
+            return res.status(400).json({ error: "user invalid" })
         }
-
-
-
-
     } catch (error) {
         console.log("error", error);
         res.status(500).json({ error: "error" })
@@ -75,5 +80,9 @@ router.post('/signin', async (req, res) => {
 
 
 });
+
+
+
+ 
 
 module.exports = router;
