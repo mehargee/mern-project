@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -47,11 +48,14 @@ router.post('/register', async (req, res) => {
 //login route
 router.post('/signin', async (req, res) => {
 
-    const { email, password } = req.body;
+
     // const email = req.body.email;
     // const password = req.body.password;
 
     try {
+        let token;
+        const { email, password } = req.body;
+
         if (!email || !password) {
             return res.status(400).json({ error: "fill the both fields" });
         }
@@ -61,6 +65,16 @@ router.post('/signin', async (req, res) => {
         if (userLogin) {
             //compare hash passwoord DB
             const isMatch = await bcrypt.compare(password, userLogin.password)
+
+            //call function when user is login
+            token = await userLogin.generateAuthToken();
+            //console.log(token);
+
+            //cookie(cookieNmae, value)
+            res.cookie("jwtoken", token, {
+                expires: new Date(Date.now() + 2589200000), //after one month token expire
+                httpOnly: true    //otherwise only run on secure https
+            })
 
             if (!isMatch) {
 
@@ -83,6 +97,6 @@ router.post('/signin', async (req, res) => {
 
 
 
- 
+
 
 module.exports = router;
