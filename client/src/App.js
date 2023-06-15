@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import Signup from './components/Singup';
 import About from './components/About';
 import Login from './components/Login';
+import Errorpage from './components/Errorpage';
 
 
 
@@ -35,6 +36,9 @@ import Login from './components/Login';
     <Login/>
     </Route>
 
+    <Route >
+    <Errorpage/>
+    </Route>
 
     </>
     
