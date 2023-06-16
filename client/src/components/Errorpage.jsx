@@ -14,7 +14,7 @@ const Errorpage = () => {
                 <p className='mb-5'>
                     The page are looking might be removed had its name changed or is temporary unavailabe.
                 </p>
-                <NavLink to="/">Back to Homepage</NavLink>
+                <NavLink to="/">Back to Home page</NavLink>
             </div>
             </div>
         </>

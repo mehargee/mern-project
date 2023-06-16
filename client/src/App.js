@@ -1,6 +1,7 @@
-import React from 'react'
-import './App.css'
-import { Route } from 'react-router-dom';
+import React from 'react';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Contact from './components/Contact';
@@ -11,37 +12,38 @@ import Errorpage from './components/Errorpage';
 
 
 
- const App = () => {
+const App = () => {
   return (
     <>
-    <Navbar />
+      <Navbar />
 
-    <Route exact path="/">
-    <Home />
-    </Route>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
 
-    <Route path="/about">
-    <About />
-    </Route>
+        <Route path="/about">
+          <About />
+        </Route>
 
-    <Route path="/contact">
-    <Contact />
-    </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
 
-    <Route path="/signup">
-    <Signup />
-    </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
 
-    <Route path="/login">
-    <Login/>
-    </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
 
-    <Route >
-    <Errorpage/>
-    </Route>
-
+        <Route >
+          <Errorpage />
+        </Route>
+      </Switch>
     </>
-    
+
   )
 }
 
