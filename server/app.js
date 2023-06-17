@@ -18,7 +18,7 @@ app.use(require('./router/auth'))
 
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 //Middleware
 const middleware = (req, res, next) => {
     console.log(`hello i am middleware`);
@@ -34,17 +34,17 @@ app.get('/about', middleware, (req, res) => {
     res.send("Hello from the MERN about page");
 });
 
-app.get('/contact', (req, res) => {
-    res.send("Hello from the MERN contact page");
-});
+// app.get('/contact', (req, res) => {
+//     res.send("Hello from the MERN contact page");
+// });
 
-app.get('/signin', (req, res) => {
-    res.send("Hello from the MERN signin page");
-});
+// app.get('/signin', (req, res) => {
+//     res.send("Hello from the MERN signin page");
+// });
 
-app.get('/signup', (req, res) => {
-    res.send("Hello from the MERN signup page");
-});
+// app.get('/signup', (req, res) => {
+//     res.send("Hello from the MERN signup page");
+// });
 
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`)

@@ -1,10 +1,10 @@
 import React from 'react';
 import signpic from '../images/sign.PNG';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { useState } from 'react';
 
 const Signup = () => {
-
+const history = useHistory();
 const [user, setUser] = useState({
   name:"",email:"",phone:"",work:"",password:"",cpassword:"" });
 
@@ -17,6 +17,35 @@ const [user, setUser] = useState({
       setUser({...user,[name]:value});
   }
 
+  const postData = async (e) => {
+      e.preventDefault();
+
+      const {name, email, phone, work, password, cpassword} = user;
+       const res = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name, email, phone, work, password, cpassword  //key:value
+        })
+       });
+
+       const data = await res.json();
+
+       if (data.status === 422 || !data) {
+        window.alert("Invalid Registration");
+        console.log("Registration Invalid");
+       }
+       else{
+        window.alert("Registration Sucessfull!");
+        console.log("Sucessfull Registration");
+
+        history.push("/login");
+       }
+
+  }
+
   return (
     <>
       <section className="signup">
@@ -24,7 +53,7 @@ const [user, setUser] = useState({
           <div className='signup-content'>
             <div className='signup-form'>
               <h2 className='form-title'>Sign up</h2>
-              <form action="#" method="get" className='register-form' id='register-form'>
+              <form method="POST" className='register-form' id='register-form'>
                 <div className='form-group'>
                   <label htmlFor="name">
                     <i class="zmdi zmdi-account meterial-icons-name"></i>
@@ -87,7 +116,7 @@ const [user, setUser] = useState({
 
                 <div className='from-group form-button'>
                   <input type="submit" name="signup" id='signup' className='form-submit'
-                  value="Register"
+                  value="Register" onClick={postData}
                   />
                 </div>
 
