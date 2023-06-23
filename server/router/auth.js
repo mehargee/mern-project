@@ -119,26 +119,34 @@ router.post('/contact', authenticate, async (req, res) => {
     try {
         console.log(`hello i am message contact page`);
 
-        
+
         if (!name || !email || !phone || !message) {
             console.log(`Error in contact form`);
-            return res.json({error: "Plz filled the contact form"})
+            return res.json({ error: "Plz filled the contact form" })
         }
 
-        const userContact = await User.findOne({_id: req.userID});
+        const userContact = await User.findOne({ _id: req.userID });
 
         if (userContact) {
-            
-            const userMessage = await userContact.addMessgae(name,email,phone,message);
+
+            const userMessage = await userContact.addMessgae(name, email, phone, message);
             await userContact.save();
 
-            res.status(201).json({message: "user contact msg sucessfully..!"})
+            res.status(201).json({ message: "user contact msg sucessfully..!" })
         }
 
     } catch (error) {
-            console.log(error);
+        console.log(error);
     }
 
 });
+
+// logout page route 
+router.get('/logout', (req, res) => {
+    console.log(`hello i am logout page`);
+    res.clearCookie('jwtoken', { path: '/' })
+    res.status(200).send("user logout")
+});
+
 
 module.exports = router;

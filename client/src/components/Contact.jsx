@@ -66,7 +66,7 @@ const Contact = () => {
       console.log("message not sent");
     }
     else{
-      alert("message send...!");
+      alert("message send...! Thanks");
       setUserData({...userData, message:""});
     }
   }

@@ -9,6 +9,7 @@ import Signup from './components/Singup';
 import About from './components/About';
 import Login from './components/Login';
 import Errorpage from './components/Errorpage';
+import Logout from './components/Logout';
 
 
 
@@ -36,6 +37,10 @@ const App = () => {
 
         <Route path="/login">
           <Login />
+        </Route>
+
+        <Route path="/logout">
+          <Logout />
         </Route>
 
         <Route >
