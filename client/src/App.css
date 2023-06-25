@@ -93,11 +93,6 @@
   background-color: #f2f2f2;
 }
 
-/* .container {
-  max-width: 900px;
-  margin: 20 auto;
-  padding: 0 20px;
-} */
 
 .signin-content {
   display: flex;
@@ -269,11 +264,6 @@
   padding: 40px 0;
 }
 
-/* .container {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 15px;
-} */
 
 .row {
   display: flex;
@@ -533,3 +523,150 @@
   }
 }
 
+/* media query for mobile devices usign CHATgpt */
+
+/* Registration component css code  */
+@media (max-width: 767px) {
+  .container {
+    max-width: 100%;
+    margin: 20px;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .signup-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signup-form {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .signup-image {
+    width: 100%;
+  }
+
+  /* //login page  */
+
+  .signin-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signin-image {
+    width: 100%;
+  }
+
+  .signin-form {
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* contact us page  */
+  .contact_info_item {
+    flex-basis: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .contact_form {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .col-lg-10 {
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .contact_form_container {
+    padding: 20px;
+  }
+
+  .contact_form_title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .contact_form input[type="text"],
+  .contact_form input[type="email"],
+  .contact_form input[type="number"],
+  .contact_form textarea {
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+
+/* Home page  */
+
+
+.home-page {
+  height: 100vh;
+  /* Increase the height to occupy the full viewport height */
+}
+
+.home-div p {
+  font-size: 16px;
+}
+
+.home-div h1 {
+  font-size: 22px;
+}
+
+/* about page  */
+
+  .emp-profile {
+    margin-top: 30px;
+  }
+
+  .profile-head h5 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .profile-head h6 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .profile-reting span {
+    font-size: 14px;
+  }
+
+  .nav-tabs .nav-item {
+    margin-bottom: 10px;
+  }
+
+  .nav-tabs .nav-link {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .profile-edit-btn {
+    padding: 5px 15px;
+    font-size: 14px;
+  }
+
+  .profile-word p {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .profile-word a {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .profile-tab label {
+    font-size: 14px;
+  }
+
+  .profile-tab p {
+    font-size: 14px;
+  }
+
+
+
+}
