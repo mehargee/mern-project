@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import loginpic from '../images/login.PNG';
 import { NavLink, useHistory } from 'react-router-dom/cjs/react-router-dom';
+import { useContext } from 'react';
+
+import { UserContext } from '../App';
 
 const Login = () => {
+
+  const { state, dispatch } = useContext(UserContext);
+
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,10 +17,10 @@ const Login = () => {
     console.log("login page working");
     e.preventDefault();
 
-    const res = await fetch('/signin' , {
+    const res = await fetch('/signin', {
       method: "POST",
       headers: {
-        "Content-Type" : "application/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         email,        //key:value
@@ -28,6 +34,9 @@ const Login = () => {
       window.alert('Invalid information');
     }
     else {
+      
+      dispatch({ type: 'USER', payload: true })
+
       window.alert('Login Sucessfull!');
 
       history.push('/');

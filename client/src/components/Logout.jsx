@@ -1,7 +1,12 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
+import { UserContext } from '../App';
+
 const Logout = () => {
+
+    const { state, dispatch } = useContext(UserContext);
+
     //promises
     const history = useHistory();
     useEffect(() => {
@@ -13,6 +18,8 @@ const Logout = () => {
             },
             credentials: "include"    //cookie backend me send krny k lye
         }).then((res) => {
+            dispatch({ type: 'USER', payload: false })
+
             history.push('/login', { replace: true });  //mean compulsory to move login page
            console.log('logout sucessfully');
             if (res.status != 200) {
